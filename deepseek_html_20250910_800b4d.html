@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch & Earn - Complete System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 28px;
+            font-weight: 700;
+        }
+        
+        .logo i {
+            color: #FFD700;
+        }
+        
+        nav ul {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+        
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: #FFD700;
+        }
+        
+        .user-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .login-button, .register-button {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            padding: 10px 20px;
+            color: #fff;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .login-button:hover, .register-button:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+        
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00C9FF, #92FE9D);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .dashboard {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+        
+        .dashboard-title {
+            font-size: 22px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .stat-card {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .stat-card i {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: #FFD700;
+        }
+        
+        .stat-value {
+            font-size: 28px;
+            font-weight: 700;
+            margin: 5px 0;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        .watch-section {
+            text-align: center;
+        }
+        
+        .watch-title {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        
+        .watch-desc {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+        
+        .ad-container {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .ad-label {
+            font-size: 12px;
+            opacity: 0.7;
+            margin-bottom: 5px;
+        }
+        
+        .ad-placeholder {
+            width: 100%;
+            height: 90px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px 0;
+        }
+        
+        .ad-placeholder.large {
+            height: 250px;
+        }
+        
+        .watch-button {
+            background: linear-gradient(135deg, #FFD700, #FF9800);
+            border: none;
+            border-radius: 50%;
+            width: 180px;
+            height: 180px;
+            color: #333;
+            font-size: 22px;
+            font-weight: 700;
+            cursor: pointer;
+            margin: 0 auto 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: pulse 2s infinite;
+        }
+        
+        .watch-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 35px rgba(255, 215, 0, 0.6);
+        }
+        
+        .watch-button:disabled {
+            background: linear-gradient(135deg, #cccccc, #888888);
+            cursor: not-allowed;
+            animation: none;
+            transform: scale(1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .watch-button i {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        
+        .ads-counter {
+            font-size: 18px;
+            margin: 10px 0;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            display: inline-block;
+        }
+        
+        .withdrawal-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            margin-top: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+        
+        .withdrawal-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .withdrawal-desc {
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        
+        .withdrawal-button {
+            background: linear-gradient(135deg, #00C9FF, #92FE9D);
+            border: none;
+            border-radius: 50px;
+            padding: 15px 40px;
+            color: #333;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 20px rgba(0, 201, 255, 0.4);
+            margin-top: 20px;
+        }
+        
+        .withdrawal-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 201, 255, 0.6);
+        }
+        
+        .withdrawal-button:disabled {
+            background: linear-gradient(135deg, #cccccc, #888888);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .conversion-info {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        
+        .conversion-info h3 {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .conversion-info ul {
+            list-style-type: none;
+            margin-left: 10px;
+        }
+        
+        .conversion-info li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .conversion-info i {
+            color: #FFD700;
+        }
+        
+        /* Secret Withdrawal Page */
+        .secret-page {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 600px;
+            background: linear-gradient(135deg, #2c3e50, #4a235a);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+        
+        .secret-page h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #FFD700;
+            font-size: 28px;
+        }
+        
+        .secret-page-content {
+            max-height: 70vh;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+        
+        .secret-page-content::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .secret-page-content::-webkit-scrollbar-thumb {
+            background: #FFD700;
+            border-radius: 4px;
+        }
+        
+        .rules-list {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+        
+        .rules-list li {
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .instagram-contact {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 25px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        
+        .instagram-contact a {
+            color: #FFD700;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .instagram-contact a:hover {
+            text-decoration: underline;
+        }
+        
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 999;
+        }
+        
+        /* Login Modal */
+        .login-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 400px;
+            background: linear-gradient(135deg, #2c3e50, #1a2a6c);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+        
+        .login-modal h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #FFD700;
+        }
+        
+        .login-form input {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+        
+        .login-form input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .login-form button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #FFD700, #FF9800);
+            color: #333;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .form-footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        
+        .form-footer a {
+            color: #FFD700;
+            text-decoration: none;
+        }
+        
+        .reward-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 15px 20px;
+            display: none;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            animation: slideIn 0.5s forwards;
+        }
+        
+        .reward-notification i {
+            color: #FFD700;
+            font-size: 24px;
+        }
+        
+        .limit-notification {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 100, 100, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 15px 20px;
+            display: none;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            animation: slideInFromLeft 0.5s forwards;
+        }
+        
+        .limit-notification i {
+            color: #ff4d4d;
+            font-size: 24px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 14px;
+            opacity: 0.7;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 12px 35px rgba(255, 215, 0, 0.6);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+            }
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideInFromLeft {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .watch-button {
+                width: 150px;
+                height: 150px;
+                font-size: 18px;
+            }
+            
+            .watch-button i {
+                font-size: 36px;
+            }
+            
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            .secret-page, .login-modal {
+                width: 95%;
+                padding: 20px;
+            }
+            
+            .user-section {
+                margin-top: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-coins"></i>
+                <span>Watch & Earn</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Rewards</a></li>
+                    <li><a href="#">Withdrawal Request</a></li>
+                    <li><a href="#">Help</a></li>
+                </ul>
+            </nav>
+            <div class="user-section" id="userSection">
+                <button class="login-button" id="loginButton">Login</button>
+                <button class="register-button" id="registerButton">Register</button>
+                <!-- User profile will be shown after login -->
+                <div class="user-profile" id="userProfile" style="display: none;">
+                    <div class="user-avatar">U</div>
+                    <span id="username">User</span>
+                </div>
+            </div>
+        </header>
+        
+        <div class="main-content">
+            <div class="dashboard">
+                <h2 class="dashboard-title"><i class="fas fa-chart-line"></i> Your Dashboard</h2>
+                <div class="stats">
+                    <div class="stat-card">
+                        <i class="fas fa-coins"></i>
+                        <div class="stat-value" id="coinBalance">250</div>
+                        <div class="stat-label">Coin Balance</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-fire"></i>
+                        <div class="stat-value">3</div>
+                        <div class="stat-label">Day Streak</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-video"></i>
+                        <div class="stat-value" id="adsWatched">2</div>
+                        <div class="stat-label">Ads Watched Today</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-award"></i>
+                        <div class="stat-value" id="adsRemaining">8</div>
+                        <div class="stat-label">Ads Remaining Today</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="watch-section">
+                <h2 class="watch-title">Watch Ads & Earn Coins!</h2>
+                <p class="watch-desc">Click the button below to watch a short video ad and earn coins. You can watch up to 10 ads per day!</p>
+                
+                <!-- Ad Container - Top Banner -->
+                <div class="ad-container">
+                    <div class="ad-label">ADVERTISEMENT</div>
+                    <div class="ad-placeholder">
+                        <!-- REPLACE WITH YOUR ADMOB BANNER AD CODE -->
+                        <div style="color: #fff; text-align: center;">
+                            <p>AdMob Banner Ad</p>
+                            <p>Your AdMob ID: ca-app-pub-6382951417856469/1234567890</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="watch-button" id="watchButton">
+                    <i class="fas fa-play-circle"></i>
+                    Watch Ad
+                </button>
+                
+                <!-- Ad Container - Reward Video -->
+                <div class="ad-container">
+                    <div class="ad-label">REWARD VIDEO AD</div>
+                    <div class="ad-placeholder">
+                        <!-- REPLACE WITH YOUR ADMOB REWARDED AD CODE -->
+                        <div style="color: #fff; text-align: center;">
+                            <p>AdMob Reward Video Ad</p>
+                            <p>Your AdMob ID: ca-app-pub-6382951417856469/0987654321</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ads-counter">
+                    <i class="fas fa-tv"></i> <span id="adsCount">2/10</span> ads watched today
+                </div>
+                
+                <!-- Ad Container - Bottom Banner -->
+                <div class="ad-container">
+                    <div class="ad-label">ADVERTISEMENT</div>
+                    <div class="ad-placeholder">
+                        <!-- REPLACE WITH YOUR ADMOB BANNER AD CODE -->
+                        <div style="color: #fff; text-align: center;">
+                            <p>AdMob Banner Ad</p>
+                            <p>Your AdMob ID: ca-app-pub-6382951417856469/1234567890</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <p>Earn 10 coins for each ad you watch</p>
+            </div>
+        </div>
+        
+        <div class="withdrawal-section">
+            <h2 class="withdrawal-title"><i class="fas fa-wallet"></i> Withdraw Your Earnings</h2>
+            
+            <div class="conversion-info">
+                <h3><i class="fas fa-exchange-alt"></i> Coin Conversion Rate</h3>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> 10 Coins = ₹1</li>
+                    <li><i class="fas fa-gift"></i> 6000 Coins = ₹600 (₹100 conversion fee)</li>
+                    <li><i class="fas fa-unlock"></i> Minimum withdrawal: 6000 Coins (₹500 after fee)</li>
+                    <li><i class="fas fa-clock"></i> Maximum 10 ads per day (100 coins daily)</li>
+                </ul>
+            </div>
+            
+            <p class="withdrawal-desc">Redeem your coins for real money! Click the button below to request withdrawal.</p>
+            
+            <button class="withdrawal-button" id="withdrawalButton">Request Withdrawal</button>
+            
+            <p style="margin-top: 20px; font-size: 14px; opacity: 0.8;">
+                <i class="fas fa-info-circle"></i> You need 6000 coins to withdraw (approximately 60 days of watching all daily ads)
+            </p>
+        </div>
+    </div>
+    
+    <!-- Secret Withdrawal Page -->
+    <div class="overlay" id="overlay"></div>
+    
+    <div class="secret-page" id="secretPage">
+        <button class="close-button" id="closeSecretPage">
+            <i class="fas fa-times"></i>
+        </button>
+        <h2><i class="fas fa-lock"></i> Withdrawal Request</h2>
+        
+        <div class="secret-page-content">
+            <p>To complete your withdrawal request, please follow these instructions carefully:</p>
+            
+            <div class="conversion-info">
+                <h3><i class="fas fa-list-check"></i> Withdrawal Rules</h3>
+                <ol class="rules-list">
+                    <li>You must have at least <strong>6000 coins</strong> to request withdrawal</li>
+                    <li>Take a <strong>screenshot</strong> of your withdrawal request confirmation</li>
+                    <li>Record a <strong>short video</strong> showing your withdrawal request and balance</li>
+                    <li>Send both the screenshot and video to our Instagram account</li>
+                    <li>Include your <strong>username</strong> and <strong>email address</strong> in the message</li>
+                    <li>Payments are processed within <strong>3-5 business days</strong> after verification</li>
+                </ol>
+            </div>
+            
+            <div class="instagram-contact">
+                <i class="fab fa-instagram" style="color: #E1306C; font-size: 24px;"></i>
+                <span>Contact us on Instagram: </span>
+                <a href="https://www.instagram.com/explore.web/profilecard/?igsh=MTB1dXhjZDZpcXBwZg==" target="_blank">
+                    <i class="fab fa-instagram"></i> @explore.web
+                </a>
+            </div>
+            
+            <p style="text-align: center; margin-top: 20px;">
+                <i class="fas fa-lightbulb" style="color: #FFD700;"></i> 
+                After we verify your screenshot and video, we will process your payment!
+            </p>
+        </div>
+    </div>
+    
+    <!-- Login Modal -->
+    <div class="login-modal" id="loginModal">
+        <button class="close-button" id="closeLoginModal">
+            <i class="fas fa-times"></i>
+        </button>
+        <h2><i class="fas fa-user"></i> Login to Your Account</h2>
+        
+        <form class="login-form">
+            <input type="text" placeholder="Username or Email" required>
+            <input type="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        
+        <div class="form-footer">
+            <p>Don't have an account? <a href="#" id="switchToRegister">Register</a></p>
+        </div>
+    </div>
+    
+    <!-- Register Modal -->
+    <div class="login-modal" id="registerModal">
+        <button class="close-button" id="closeRegisterModal">
+            <i class="fas fa-times"></i>
+        </button>
+        <h2><i class="fas fa-user-plus"></i> Create Account</h2>
+        
+        <form class="login-form">
+            <input type="text" placeholder="Full Name" required>
+            <input type="text" placeholder="Username" required>
+            <input type="email" placeholder="Email Address" required>
+            <input type="password" placeholder="Password" required>
+            <input type="password" placeholder="Confirm Password" required>
+            <button type="submit">Register</button>
+        </form>
+        
+        <div class="form-footer">
+            <p>Already have an account? <a href="#" id="switchToLogin">Login</a></p>
+        </div>
+    </div>
+    
+    <div class="reward-notification" id="rewardNotification">
+        <i class="fas fa-gift"></i>
+        <div>
+            <div>Congratulations!</div>
+            <div>You earned <span id="earnedCoins">10</span> coins!</div>
+        </div>
+    </div>
+    
+    <div class="limit-notification" id="limitNotification">
+        <i class="fas fa-exclamation-circle"></i>
+        <div>
+            <div>Daily Limit Reached!</div>
+            <div>Come back tomorrow to watch more ads</div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>© 2023 Watch & Earn. All rights reserved. | Privacy Policy | Terms of Service</p>
+    </footer>
+
+    <script>
+        // Initialize variables
+        let coins = 250;
+        let adsWatched = 2;
+        const dailyLimit = 10;
+        let adsRemaining = dailyLimit - adsWatched;
+        let isLoggedIn = false;
+        
+        // DOM elements
+        const watchButton = document.getElementById('watchButton');
+        const rewardNotification = document.getElementById('rewardNotification');
+        const limitNotification = document.getElementById('limitNotification');
+        const earnedCoins = document.getElementById('earnedCoins');
+        const coinBalance = document.getElementById('coinBalance');
+        const adsWatchedElement = document.getElementById('adsWatched');
+        const adsRemainingElement = document.getElementById('adsRemaining');
+        const adsCountElement = document.getElementById('adsCount');
+        const withdrawalButton = document.getElementById('withdrawalButton');
+        const secretPage = document.getElementById('secretPage');
+        const overlay = document.getElementById('overlay');
+        const closeSecretPage = document.getElementById('closeSecretPage');
+        const loginButton = document.getElementById('loginButton');
+        const registerButton = document.getElementById('registerButton');
+        const loginModal = document.getElementById('loginModal');
+        const registerModal = document.getElementById('registerModal');
+        const closeLoginModal = document.getElementById('closeLoginModal');
+        const closeRegisterModal = document.getElementById('closeRegisterModal');
+        const switchToRegister = document.getElementById('switchToRegister');
+        const switchToLogin = document.getElementById('switchToLogin');
+        const userProfile = document.getElementById('userProfile');
+        const userSection = document.getElementById('userSection');
+        
+        // Update display
+        function updateDisplay() {
+            coinBalance.textContent = coins.toLocaleString();
+            adsWatchedElement.textContent = adsWatched;
+            adsRemainingElement.textContent = adsRemaining;
+            adsCountElement.textContent = `${adsWatched}/${dailyLimit}`;
+            
+            // Enable/disable watch button based on daily limit
+            if (adsRemaining <= 0) {
+                watchButton.disabled = true;
+                watchButton.innerHTML = '<i class="fas fa-ban"></i> Limit Reached';
+            }
+            
+            // Enable/disable withdrawal button based on minimum balance
+            withdrawalButton.disabled = coins < 6000;
+        }
+        
+        // Watch button functionality
+        watchButton.addEventListener('click', () => {
+            if (!isLoggedIn) {
+                alert('Please login first to watch ads and earn coins!');
+                loginModal.style.display = 'block';
+                overlay.style.display = 'block';
+                return;
+            }
+            
+            if (adsRemaining <= 0) {
+                limitNotification.style.display = 'flex';
+                setTimeout(() => {
+                    limitNotification.style.display = 'none';
+                }, 3000);
+                return;
+            }
+            
+            // Simulate loading
+            watchButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+            watchButton.disabled = true;
+            
+            // Simulate ad watching time
+            setTimeout(() => {
+                // Add coins
+                const earned = 10;
+                coins += earned;
+                
+                // Update ads counters
+                adsWatched++;
+                adsRemaining--;
+                
+                // Update display
+                updateDisplay();
+                
+                // Show reward notification
+                earnedCoins.textContent = earned;
+                rewardNotification.style.display = 'flex';
+                
+                // Reset button if there are still ads remaining
+                if (adsRemaining > 0) {
+                    watchButton.innerHTML = '<i class="fas fa-play-circle"></i> Watch Ad';
+                    watchButton.disabled = false;
+                } else {
+                    watchButton.innerHTML = '<i class="fas fa-ban"></i> Limit Reached';
+                    limitNotification.style.display = 'flex';
+                    setTimeout(() => {
+                        limitNotification.style.display = 'none';
+                    }, 3000);
+                }
+                
+                // Hide notification after 3 seconds
+                setTimeout(() => {
+                    rewardNotification.style.display = 'none';
+                }, 3000);
+            }, 3000);
+        });
+        
+        // Withdrawal button functionality
+        withdrawalButton.addEventListener('click', () => {
+            if (!isLoggedIn) {
+                alert('Please login first to request withdrawal!');
+                loginModal.style.display = 'block';
+                overlay.style.display = 'block';
+                return;
+            }
+            
+            if (coins >= 6000) {
+                // Show the secret withdrawal page
+                secretPage.style.display = 'block';
+                overlay.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            } else {
+                alert(`You need ${(6000 - coins).toLocaleString()} more coins to withdraw. Keep watching!`);
+            }
+        });
+        
+        // Close secret page
+        closeSecretPage.addEventListener('click', () => {
+            secretPage.style.display = 'none';
+            overlay.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        
+        overlay.addEventListener('click', () => {
+            secretPage.style.display = 'none';
+            overlay.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            loginModal.style.display = 'none';
+            registerModal.style.display = 'none';
+        });
+        
+        // Login functionality
+        loginButton.addEventListener('click', () => {
+            loginModal.style.display = 'block';
+            overlay.style.display = 'block';
+        });
+        
+        registerButton.addEventListener('click', () => {
+            registerModal.style.display = 'block';
+            overlay.style.display = 'block';
+        });
+        
+        closeLoginModal.addEventListener('click', () => {
+            loginModal.style.display = 'none';
+            overlay.style.display = 'none';
+        });
+        
+        closeRegisterModal.addEventListener('click', () => {
+            registerModal.style.display = 'none';
+            overlay.style.display = 'none';
+        });
+        
+        switchToRegister.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginModal.style.display = 'none';
+            registerModal.style.display = 'block';
+        });
+        
+        switchToLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            registerModal.style.display = 'none';
+            loginModal.style.display = 'block';
+        });
+        
+        // Form submission
+        document.querySelectorAll('.login-form').forEach(form => {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                // Simulate login/registration
+                isLoggedIn = true;
+                loginModal.style.display = 'none';
+                registerModal.style.display = 'none';
+                overlay.style.display = 'none';
+                
+                // Show user profile
+                userProfile.style.display = 'flex';
+                loginButton.style.display = 'none';
+                registerButton.style.display = 'none';
+                
+                alert('Login successful! You can now watch ads and earn coins.');
+            });
+        });
+        
+        // Initialize display
+        updateDisplay();
+        
+        // AdMob Integration Instructions
+        console.log("To implement AdMob ads:");
+        console.log("1. Replace the ad placeholders with your actual AdMob ad code");
+        console.log("2. For banner ads: Use your AdMob banner ad unit ID");
+        console.log("3. For rewarded ads: Use your AdMob rewarded ad unit ID");
+        console.log("4. Initialize the ads with your AdMob app ID");
+    </script>
+</body>
+</html>
